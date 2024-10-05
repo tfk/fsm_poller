@@ -2,6 +2,7 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
+
 class MediaPlayer {
 
 public:
