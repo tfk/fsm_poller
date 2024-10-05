@@ -3,7 +3,7 @@
 
 namespace fsm {
 
-template <class T> class TransitionWatcher {
+template <class T> class Poller {
 public:
   using State = T;
   struct TransitionEvent {
@@ -34,13 +34,13 @@ private:
   }
 
 public:
-  explicit TransitionWatcher(State &value)
+  explicit Poller(State &value)
       : lastValue(value), valueGetter([&value]() { return value; }) {}
 
-  explicit TransitionWatcher(std::function<State()> valueGetter)
+  explicit Poller(std::function<State()> valueGetter)
       : lastValue(valueGetter()), valueGetter(valueGetter) {}
 
-  TransitionWatcher(T &firstValue, std::function<T()> valueGetter)
+  Poller(T &firstValue, std::function<T()> valueGetter)
       : lastValue(firstValue), valueGetter(valueGetter) {}
 
   State getValue() { return valueGetter(); }
