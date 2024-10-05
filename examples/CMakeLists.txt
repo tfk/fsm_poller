@@ -1,0 +1,3 @@
+add_executable(media_player media_player.cpp)
+
+target_link_libraries(media_player PRIVATE fsm_poller)

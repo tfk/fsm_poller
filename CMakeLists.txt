@@ -5,6 +5,12 @@ project(fsm_poller
   LANGUAGES CXX
 )
 
-add_library(fsm_poller INTERFACE)
+add_library(${PROJECT_NAME} INTERFACE)
+add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
-target_include_directories(fsm_poller INTERFACE include/>)
+target_include_directories(
+  ${PROJECT_NAME} INTERFACE
+  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+
+add_subdirectory(examples)
